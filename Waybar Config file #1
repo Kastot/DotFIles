@@ -1,0 +1,56 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 6,
+    "modules-left": ["mpris", "custom-logout"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio"],
+
+    "custom-logout": {
+        "format": "⏻  ", 
+        "on-click": ["~/scripts/logout.sh"], 
+        "tooltip": "Click for options"
+    },
+  
+    "mpris": {
+        "format": "♬ {player_icon} {artist} - {title}",
+        "format-paused": "⏸ {artist} - {title}",
+        "player-icons": {
+            "default": "",
+            "spotify": "",
+            "vlc": "🎬"
+        },
+        "status-icons": {
+            "playing": "▶",
+            "paused": "⏸",
+            "stopped": "■"
+        },
+        "on-click": "playerctl play-pause",
+        "on-click-middle": "playerctl previous",
+        "on-click-right": "playerctl next",
+        "tooltip": true
+    },
+
+    "clock": {
+        "interval": 60,
+        "format": "  {:%H:%M}",
+        "tooltip": true,
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b>{}</b></span>"
+            }
+        }
+    },
+
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-muted": "muted",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    }
+}
